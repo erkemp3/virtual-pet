@@ -148,3 +148,42 @@ describe("checkUp", () => {
     expect(() => pet.checkUp()).toThrow("Your pet is no longer alive :(");
   });
 });
+
+describe("isAlive", () => {
+  it("returns false if pet fitness is 0 or less", () => {
+    const pet = new Pet("Ellie");
+
+    pet.fitness = 0;
+
+    expect(pet.isAlive).toEqual(false);
+  });
+  it("returns false if pet hunger is 10 or more", () => {
+    const pet = new Pet("Lexie");
+
+    pet.hunger = 11;
+
+    expect(pet.isAlive).toEqual(false);
+  });
+  it("returns false if pet age is 30 or more", () => {
+    const pet = new Pet("Linda");
+
+    pet.age = 30;
+
+    expect(pet.isAlive).toEqual(false);
+  });
+  it("returns true otherwise", () => {
+    const pet = new Pet("Danni");
+
+    expect(pet.isAlive).toEqual(true);
+  });
+});
+
+describe("adoptChild", () => {
+  it("adopts another pet as a child in its arrray", () => {
+    const pet1 = new Pet("Bob");
+    const pet2 = new Pet("Bill");
+    pet1.adoptChild(pet2);
+
+    expect(pet1.children[0].name).toEqual("Bill");
+  });
+});
